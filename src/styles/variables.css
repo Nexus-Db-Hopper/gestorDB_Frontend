@@ -1,0 +1,68 @@
+/* src/styles/variables.css */
+
+:root {
+  /* Colores Primarios (Basados en tus azules existentes) */
+  --color-primary-500: #007bff; /* Azul principal */
+  --color-primary-600: #0056b3; /* Azul más oscuro para hover/degradado */
+  --color-primary-700: #004085; /* Azul aún más oscuro */
+  --color-primary-gradient: linear-gradient(90deg, var(--color-primary-500) 0%, var(--color-primary-600) 100%);
+
+  /* Colores Neutros (Inspirados en Stripe, GitHub) */
+  --color-neutral-50: #f9fafb; /* Fondo muy claro */
+  --color-neutral-100: #f3f4f6; /* Fondo claro */
+  --color-neutral-200: #e5e7eb; /* Bordes, separadores */
+  --color-neutral-300: #d1d5db; /* Bordes, texto secundario */
+  --color-neutral-400: #9ca3af; /* Texto deshabilitado, placeholders */
+  --color-neutral-500: #6b7280; /* Texto base */
+  --color-neutral-700: #374151; /* Texto oscuro */
+  --color-neutral-900: #111827; /* Texto muy oscuro, títulos */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Colores de Estado */
+  --color-success: #28a745; /* Verde para éxito */
+  --color-success-dark: #218838;
+  --color-error: #dc3545; /* Rojo para error */
+  --color-error-dark: #c82333;
+  --color-warning: #ffc107; /* Amarillo para advertencia */
+
+  /* Tipografía */
+  --font-family-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem;    /* 16px */
+  --font-size-lg: 1.125rem;  /* 18px */
+  --font-size-xl: 1.25rem;   /* 20px */
+  --font-size-2xl: 1.5rem;   /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem;  /* 36px */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Espaciado (Basado en múltiplos de 4px o 8px para simetría) */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+
+  /* Bordes y Sombras */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-full: 9999px;
+
+  --box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --box-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --box-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Transiciones */
+  --transition-duration-fast: 150ms;
+  --transition-duration-normal: 250ms;
+  --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* ease-in-out */
+}
