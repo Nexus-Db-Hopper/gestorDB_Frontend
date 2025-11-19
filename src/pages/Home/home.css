@@ -1,0 +1,221 @@
+/* ===== LANDING GENERAL ===== */
+.landing {
+  min-height: 100vh;
+  width: 100%;
+  padding-bottom: 100px;
+  color: white;
+  background: #0a1124;
+  position: relative;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+/* ===== GRADIENT BLOBS (AZULES) ===== */
+.bg-blob {
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.55;
+  z-index: 0;
+  animation: float 18s infinite ease-in-out;
+}
+
+.blob1 {
+  top: -100px;
+  left: -120px;
+  background: #005dff;
+}
+
+.blob2 {
+  bottom: -150px;
+  right: -100px;
+  background: #009dff;
+}
+
+.blob3 {
+  top: 40%;
+  left: 60%;
+  background: #1a4fff;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-25px); }
+  100% { transform: translateY(0px); }
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  z-index: 2;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 120px 10%;
+  gap: 40px;
+}
+
+.hero-text {
+  width: 50%;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  opacity: 0.85;
+  margin-bottom: 35px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 18px;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  padding: 14px 32px;
+  border-radius: 10px;
+  background: #195bff;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.btn-primary:hover {
+  background: #0f45c9;
+}
+
+.btn-secondary {
+  padding: 14px 32px;
+  border-radius: 10px;
+  border: 2px solid #195bff;
+  background: transparent;
+  color: #195bff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.btn-secondary:hover {
+  background: #195bff;
+  color: white;
+}
+
+/* ===== HERO IMAGE ===== */
+.hero-img {
+  width: 420px;
+  max-width: 100%;
+  z-index: 2;
+  filter: drop-shadow(0 0 20px #195bff60);
+}
+
+/* ===== FEATURES ===== */
+.features {
+  margin-top: 80px;
+  padding: 0 10%;
+  text-align: center;
+}
+
+.features-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.feature-grid {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  align-items: stretch;
+}
+
+.feature-card {
+  padding: 25px;
+  background: #0f1a33;
+  border-radius: 12px;
+  border: 1px solid #1b3f83;
+  transition: 0.25s ease;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  background: #152347;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+  border-color: #2f63d1;
+}
+
+/* ===== CTA FINAL ===== */
+.cta {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.cta h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text {
+    width: 100%;
+  }
+
+  .hero-img {
+    width: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero {
+    padding: 100px 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hero-img {
+    width: 250px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+}
