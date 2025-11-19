@@ -1,0 +1,61 @@
+/* src/styles/AuthPages.css */
+@import './variables.css';
+
+.auth-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--color-neutral-50); /* Fondo muy claro */
+  padding: var(--spacing-lg);
+  font-family: var(--font-family-base);
+  
+}
+
+.auth-form-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md); /* Espacio entre inputs y botón */
+  width: 100%;
+}
+
+.auth-page-container h2 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-neutral-900);
+  margin-bottom: var(--spacing-lg);
+
+}
+
+.auth-link-text {
+  font-size: var(--font-size-base);
+  color: var(--color-neutral-700);
+  margin-top: var(--spacing-md);
+}
+
+.auth-link {
+  color: var(--color-primary-500);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--transition-duration-normal) var(--transition-timing-function);
+}
+
+.auth-link:hover {
+  color: var(--color-primary-600);
+  text-decoration: underline;
+}
+
+/* Mensajes de error y éxito - Reutilizamos los de AuthForms.css */
+.error-message {
+    color: var(--color-error);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xs);
+    text-align: center;
+}
+
+.success-message {
+    color: var(--color-success);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-xs);
+    text-align: center;
+}

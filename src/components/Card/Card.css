@@ -1,0 +1,30 @@
+/* src/components/Card/Card.css */
+@import '../../styles/variables.css'; /* Importar las variables CSS */
+
+.card {
+  background-color: var(--color-white);
+  padding: var(--spacing-2xl); /* Espaciado generoso */
+  border-radius: var(--border-radius-lg); /* Bordes redondeados */
+  box-shadow: var(--box-shadow-lg); /* Sombra suave y elegante */
+  width: 100%;
+  max-width: 450px; /* Ancho máximo para formularios de autenticación */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg); /* Espacio entre elementos internos de la tarjeta */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card {
+    padding: var(--spacing-xl);
+    max-width: 90%; /* Más ancho en pantallas pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+  }
+}

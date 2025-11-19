@@ -1,0 +1,44 @@
+/* src/pages/Profile/Profile.css */
+@import '../../styles/variables.css'; /* Importar las variables CSS */
+@import '../../styles/AuthPages.css'; /* Para los mensajes de error/éxito */
+
+.profile-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinea arriba para que no se centre verticalmente en pantallas grandes */
+    min-height: calc(100vh - var(--spacing-3xl) * 2); /* Ajusta para la altura de la navbar y padding */
+    padding: var(--spacing-3xl) var(--spacing-lg); /* Espaciado generoso */
+    background-color: var(--color-neutral-50); /* Fondo muy claro */
+    font-family: var(--font-family-base);
+}
+
+.profile-page-container h2 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-900);
+    margin-bottom: var(--spacing-lg);
+}
+
+.profile-form-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md); /* Espacio entre inputs y botones */
+    width: 100%;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinear botones a la derecha */
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.profile-loading {
+    text-align: center;
+    font-size: var(--font-size-lg);
+    color: var(--color-primary-500);
+    margin-top: var(--spacing-3xl);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Los estilos para .error-message y .success-message se importan de AuthPages.css */
