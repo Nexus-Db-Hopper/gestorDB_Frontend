@@ -23,7 +23,7 @@ function Layout() {
         <div className="layout-container">
             <nav className="navbar">
                 <div className="navbar-brand">
-                    <Link to="/">GestorDB</Link>
+                    <Link to="/">Nexus DB</Link>
                 </div>
                 <ul className="nav-links">
                     <li>

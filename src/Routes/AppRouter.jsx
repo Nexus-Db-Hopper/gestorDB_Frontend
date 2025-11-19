@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Home from "../pages/Home/Home";
-import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
+import Home from "../pages/Home/home";
+import Login from "../pages/Login/login";
+import Register from "../pages/Register/register";
 import ProtectedRoute from "./ProtectedRoute";
 import Layout from "../components/Layout/Layout"; // Importar el nuevo Layout
 import Profile from "../pages/Profile/Profile"; // Importar el futuro componente Profile
@@ -13,6 +13,7 @@ export default function AppRouter() {
         {/* ======== AUTENTICACIÓN (Rutas públicas) ======== */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/home" element={<Home/>} />
 
         {/* ======== RUTAS PROTEGIDAS ======== */}
         {/* Usamos Layout para envolver todas las rutas que requieren autenticación */}

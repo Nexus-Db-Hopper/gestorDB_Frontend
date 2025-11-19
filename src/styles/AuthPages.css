@@ -9,6 +9,7 @@
   background-color: var(--color-neutral-50); /* Fondo muy claro */
   padding: var(--spacing-lg);
   font-family: var(--font-family-base);
+  
 }
 
 .auth-form-content {
@@ -23,6 +24,7 @@
   font-weight: var(--font-weight-bold);
   color: var(--color-neutral-900);
   margin-bottom: var(--spacing-lg);
+
 }
 
 .auth-link-text {

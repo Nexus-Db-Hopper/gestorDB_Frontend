@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = "http://localhost:5138/api/Auth";
 
 // Función auxiliar para manejar las respuestas de la API
 const handleResponse = async (res) => {

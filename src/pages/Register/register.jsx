@@ -6,7 +6,8 @@ import Card from "../../components/Card/Card";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 // Importar los estilos generales de las páginas de autenticación
-import "../../styles/AuthPages.css";
+//import "../../styles/AuthPages.css";
+import "./register.css"
 
 function Register() {
     const [form, setForm] = useState({
@@ -98,23 +99,23 @@ function Register() {
     return (
         <div className="auth-page-container">
             <Card>
-                <h2>Crea tu cuenta</h2>
+                <h2>Create Account</h2>
                 <form onSubmit={handleSubmit} className="auth-form-content">
                     <Input
                         id="Name"
-                        label="Nombre"
+                        label="Name"
                         type="text"
-                        placeholder="Tu nombre"
+                        placeholder="Name"
                         value={form.Name}
                         onChange={handleChange}
                         required
                         error={error.includes("nombre") ? error : ""}
                     />
                     <Input
-                        id="LastName"
-                        label="Apellido"
+                        id="Last Name"
+                        label="Last Name"
                         type="text"
-                        placeholder="Tu apellido"
+                        placeholder="Last name"
                         value={form.LastName}
                         onChange={handleChange}
                         required
@@ -122,9 +123,9 @@ function Register() {
                     />
                     <Input
                         id="Email"
-                        label="Correo Electrónico"
+                        label="Email"
                         type="email"
-                        placeholder="tu.correo@ejemplo.com"
+                        placeholder="your@example.com"
                         value={form.Email}
                         onChange={handleChange}
                         required
@@ -132,9 +133,9 @@ function Register() {
                     />
                     <Input
                         id="Password"
-                        label="Contraseña"
+                        label="Password"
                         type="password"
-                        placeholder="Mínimo 6 caracteres"
+                        placeholder="Minimum 6 characters"
                         value={form.Password}
                         onChange={handleChange}
                         required
@@ -142,9 +143,9 @@ function Register() {
                     />
                     <Input
                         id="ConfirmPassword"
-                        label="Confirmar Contraseña"
+                        label="Confirm  password"
                         type="password"
-                        placeholder="Repite tu contraseña"
+                        placeholder="Repeat your password"
                         value={form.ConfirmPassword}
                         onChange={handleChange}
                         required
