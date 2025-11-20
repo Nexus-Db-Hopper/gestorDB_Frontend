@@ -6,10 +6,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import Layout from "../components/Layout/Layout";
 import Profile from "../pages/Profile/Profile";
 
-import Dashboard from "../pages/Dashboard/Dashboard";
-import UserDashboard from "../pages/Dashboard/UserDashboard";
-import QueryEditor from "../pages/Dashboard/QueryEditor";
-import DataManager from "../pages/Dashboard/DataManager";
+//import Dashboard from "../pages/Dashboard/Dashboard";
 
 export default function AppRouter() {
 
@@ -30,14 +27,9 @@ export default function AppRouter() {
             </ProtectedRoute>
           }
         >
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route index element={<UserDashboard />} />
-            <Route path="editor" element={<QueryEditor />} />
-            <Route path="data" element={<DataManager />} />
-          </Route>
-
-          <Route path="/profile" element={<Profile />} />
+         
         </Route>
+        {/** */}
 
         {/* 404 */}
         <Route path="*" element={<Navigate to="/" replace />} />
