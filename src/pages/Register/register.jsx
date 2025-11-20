@@ -1,171 +1,146 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../../services/authservice";
-// Importar los nuevos componentes reutilizables
-import Card from "../../components/Card/Card";
-import Input from "../../components/Input/Input";
-import Button from "../../components/Button/Button";
-// Importar los estilos generales de las páginas de autenticación
-//import "../../styles/AuthPages.css";
-import "./register.css"
+import "./register.css";
 
-function Register() {
-    const [form, setForm] = useState({
-        Name: "",
-        LastName: "",
-        Email: "",
-        Password: "",
-        ConfirmPassword: ""
-    });
-    const [error, setError] = useState(""); // Estado para mensajes de error
-    const [success, setSuccess] = useState(""); // Estado para mensajes de éxito
-    const [loading, setLoading] = useState(false); // Estado para controlar el loading del botón
-    const navigate = useNavigate();
+export default function Register() {
+  const [form, setForm] = useState({
+    Name: "",
+    LastName: "",
+    Email: "",
+    Password: "",
+    ConfirmPassword: "",
+  });
 
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.id]: e.target.value });
-    };
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    // Mensajes de validación más formales y cálidos
-    const validateForm = () => {
-        if (!form.Name.trim()) {
-            setError("El nombre es un campo obligatorio. Por favor, ingresa tu nombre.");
-            return false;
-        }
-        if (!form.LastName.trim()) {
-            setError("El apellido es un campo obligatorio. Por favor, ingresa tu apellido.");
-            return false;
-        }
-        if (!form.Email.trim()) {
-            setError("El correo electrónico es un campo obligatorio. Por favor, ingresa tu email.");
-            return false;
-        }
-        if (!/\S+@\S+\.\S+/.test(form.Email)) {
-            setError("El formato del correo electrónico no es válido. Por favor, verifica.");
-            return false;
-        }
-        if (!form.Password.trim()) {
-            setError("La contraseña es un campo obligatorio. Por favor, ingresa una clave.");
-            return false;
-        }
-        if (form.Password.length < 6) {
-            setError("La contraseña debe tener al menos 6 caracteres para mayor seguridad.");
-            return false;
-        }
-        if (form.Password !== form.ConfirmPassword) {
-            setError("Las contraseñas no coinciden. Por favor, asegúrate de que sean iguales.");
-            return false;
-        }
-        return true;
-    };
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError(""); // Limpiar errores previos
-        setSuccess(""); // Limpiar mensajes de éxito previos
-        setLoading(true); // Activar estado de carga
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.id]: e.target.value });
+  };
 
-        if (!validateForm()) {
-            setLoading(false); // Desactivar carga si la validación falla
-            return;
-        }
+  const validateForm = () => {
+    if (!form.Name.trim()) return setError("Name is required.");
+    if (!form.LastName.trim()) return setError("Last name is required.");
+    if (!form.Email.trim()) return setError("Email is required.");
+    if (!/\S+@\S+\.\S+/.test(form.Email)) return setError("Invalid email format.");
+    if (!form.Password.trim()) return setError("Password is required.");
+    if (form.Password.length < 6)
+      return setError("Password must be at least 6 characters.");
+    if (form.Password !== form.ConfirmPassword)
+      return setError("Passwords do not match.");
 
-        const data = {
-            Name: form.Name,
-            LastName: form.LastName,
-            Email: form.Email,
-            Password: form.Password
-        };
+    return true;
+  };
 
-        try {
-            const response = await registerUser(data);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+    setLoading(true);
 
-            if (response && response.success) {
-                setSuccess("¡Registro exitoso! Ahora puedes iniciar sesión con tus nuevas credenciales.");
-                setTimeout(() => {
-                    navigate("/login");
-                }, 2500); // Dar un poco más de tiempo para leer el mensaje
-            } else {
-                setError("Ha ocurrido un error al registrarte. Por favor, intenta de nuevo.");
-            }
-        } catch (err) {
-            setError(err.message || "Ha ocurrido un error inesperado al registrarte. Por favor, inténtalo más tarde.");
-            console.error("Register error:", err);
-        } finally {
-            setLoading(false); // Desactivar estado de carga
-        }
-    };
+    if (!validateForm()) {
+      setLoading(false);
+      return;
+    }
 
-    return (
-        <div className="auth-page-container">
-            <Card>
-                <h2>Create Account</h2>
-                <form onSubmit={handleSubmit} className="auth-form-content">
-                    <Input
-                        id="Name"
-                        label="Name"
-                        type="text"
-                        placeholder="Name"
-                        value={form.Name}
-                        onChange={handleChange}
-                        required
-                        error={error.includes("nombre") ? error : ""}
-                    />
-                    <Input
-                        id="Last Name"
-                        label="Last Name"
-                        type="text"
-                        placeholder="Last name"
-                        value={form.LastName}
-                        onChange={handleChange}
-                        required
-                        error={error.includes("apellido") ? error : ""}
-                    />
-                    <Input
-                        id="Email"
-                        label="Email"
-                        type="email"
-                        placeholder="your@example.com"
-                        value={form.Email}
-                        onChange={handleChange}
-                        required
-                        error={error.includes("correo") ? error : ""}
-                    />
-                    <Input
-                        id="Password"
-                        label="Password"
-                        type="password"
-                        placeholder="Minimum 6 characters"
-                        value={form.Password}
-                        onChange={handleChange}
-                        required
-                        error={error.includes("contraseña") && !error.includes("no coinciden") ? error : ""}
-                    />
-                    <Input
-                        id="ConfirmPassword"
-                        label="Confirm  password"
-                        type="password"
-                        placeholder="Repeat your password"
-                        value={form.ConfirmPassword}
-                        onChange={handleChange}
-                        required
-                        error={error.includes("no coinciden") ? error : ""}
-                    />
-                    {/* Mostrar errores generales que no son específicos de un campo */}
-                    {error && !error.includes("nombre") && !error.includes("apellido") && !error.includes("correo") && !error.includes("contraseña") && (
-                        <p className="error-message">{error}</p>
-                    )}
-                    {success && <p className="success-message">{success}</p>}
-                    <Button type="submit" loading={loading}>
-                        Registrarme
-                    </Button>
-                </form>
-                <p className="auth-link-text">
-                    ¿Ya tienes una cuenta? <Link to="/login" className="auth-link">Inicia sesión aquí</Link>
-                </p>
-            </Card>
-        </div>
-    );
+    try {
+      const data = {
+        Name: form.Name,
+        LastName: form.LastName,
+        Email: form.Email,
+        Password: form.Password,
+      };
+
+      const response = await registerUser(data);
+
+      if (response?.success) {
+        setSuccess("Account created successfully! Redirecting...");
+        setTimeout(() => navigate("/login"), 2000);
+      } else {
+        setError("Registration failed. Please try again.");
+      }
+    } catch (err) {
+      setError(err.message || "Unexpected server error.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="reg-container">
+      <div className="reg-card">
+        <h2 className="reg-title">Create Account</h2>
+
+        <form onSubmit={handleSubmit} className="reg-form">
+          <label className="reg-label">Name</label>
+          <input
+            id="Name"
+            type="text"
+            placeholder="Your name"
+            value={form.Name}
+            onChange={handleChange}
+            className="reg-input"
+          />
+
+          <label className="reg-label">Last Name</label>
+          <input
+            id="LastName"
+            type="text"
+            placeholder="Your last name"
+            value={form.LastName}
+            onChange={handleChange}
+            className="reg-input"
+          />
+
+          <label className="reg-label">Email</label>
+          <input
+            id="Email"
+            type="email"
+            placeholder="you@email.com"
+            value={form.Email}
+            onChange={handleChange}
+            className="reg-input"
+          />
+
+          <label className="reg-label">Password</label>
+          <input
+            id="Password"
+            type="password"
+            placeholder="Minimum 6 characters"
+            value={form.Password}
+            onChange={handleChange}
+            className="reg-input"
+          />
+
+          <label className="reg-label">Confirm Password</label>
+          <input
+            id="ConfirmPassword"
+            type="password"
+            placeholder="Repeat password"
+            value={form.ConfirmPassword}
+            onChange={handleChange}
+            className="reg-input"
+          />
+
+          {error && <p className="reg-error">{error}</p>}
+          {success && <p className="reg-success">{success}</p>}
+
+          <button type="submit" className="reg-btn" disabled={loading}>
+            {loading ? "Registering..." : "Register"}
+          </button>
+        </form>
+
+        <p className="reg-link-text">
+          Already have an account?{" "}
+          <Link to="/login" className="reg-link">
+            Sign in here
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
 }
-
-export default Register;

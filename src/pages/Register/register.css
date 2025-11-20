@@ -1,3 +1,128 @@
-*{
-    
+/* ===== GENERAL PAGE WRAPPER ===== */
+.reg-container {
+  min-height: 100vh;
+  width: 100%;
+  background: #0a1124;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+  color: white;
+}
+
+/* ===== CARD ===== */
+.reg-card {
+  width: 100%;
+  max-width: 400px;
+  background: #0f1a33;
+  padding: 35px;
+  border-radius: 14px;
+  border: 1px solid #1b3f83;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.reg-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+/* ===== FORM ===== */
+.reg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reg-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-bottom: -5px;
+}
+
+.reg-input {
+  padding: 12px;
+  background: #0d1430;
+  border: 1px solid #2a4f9b;
+  color: white;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.25s;
+}
+
+.reg-input:focus {
+  border-color: #4d88ff;
+  background: #112054;
+}
+
+/* ===== BUTTON ===== */
+.reg-btn {
+  margin-top: 10px;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  background: #195bff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.reg-btn:hover {
+  background: #0f45c9;
+}
+
+.reg-btn:disabled {
+  background: #123b99;
+  cursor: not-allowed;
+}
+
+/* ===== MESSAGES ===== */
+.reg-error {
+  background: #ff4e4e33;
+  border: 1px solid #ff4e4e88;
+  color: #ffb3b3;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.reg-success {
+  background: #00c85333;
+  border: 1px solid #00c85388;
+  color: #9fffb7;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* ===== LINK TEXT ===== */
+.reg-link-text {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.reg-link {
+  color: #4da3ff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.reg-link:hover {
+  color: #94c7ff;
+}
+
+@media (max-width: 480px) {
+  .reg-card {
+    padding: 25px;
+  }
+
+  .reg-title {
+    font-size: 1.6rem;
+  }
 }

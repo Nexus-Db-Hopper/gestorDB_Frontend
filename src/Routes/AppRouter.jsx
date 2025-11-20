@@ -3,38 +3,33 @@ import Home from "../pages/Home/home";
 import Login from "../pages/Login/login";
 import Register from "../pages/Register/register";
 import ProtectedRoute from "./ProtectedRoute";
-import Layout from "../components/Layout/Layout"; // Importar el nuevo Layout
-import Profile from "../pages/Profile/Profile"; // Importar el futuro componente Profile
+import Layout from "../components/Layout/Layout";
+import Profile from "../pages/Profile/Profile";
 
 export default function AppRouter() {
+
   return (
     <BrowserRouter>
       <Routes>
-        {/* ======== AUTENTICACIÓN (Rutas públicas) ======== */}
+
+        {/* Rutas Públicas */}
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<Home/>} />
 
-        {/* ======== RUTAS PROTEGIDAS ======== */}
-        {/* Usamos Layout para envolver todas las rutas que requieren autenticación */}
+        {/* Rutas Protegidas */}
         <Route
           element={
             <ProtectedRoute>
-              <Layout /> {/* El Layout contendrá la Navbar y el Outlet para las rutas hijas */}
+              <Layout />
             </ProtectedRoute>
           }
         >
-          {/* Rutas hijas que se renderizarán dentro del <Outlet> de Layout */}
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Navigate to="/" replace />} /> {/* Alias para /home */}
-          <Route path="/profile" element={<Profile />} /> {/* Nueva ruta para el perfil */}
-          {/* Aquí irían otras rutas protegidas como /dashboard, etc. */}
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
-        {/* ======== RUTA 404 - Redirige a la página principal si está autenticado, o a login si no ======== */}
-        {/* Esta ruta debe ir al final */}
+        {/* 404 */}
         <Route path="*" element={<Navigate to="/" replace />} />
-
       </Routes>
     </BrowserRouter>
   );
