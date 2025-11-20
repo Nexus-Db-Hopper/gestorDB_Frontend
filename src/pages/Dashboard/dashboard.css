@@ -1,0 +1,137 @@
+/* ===== REGISTER PAGE (prefijo reg-) ===== */
+
+.reg-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a1124;
+  padding: 20px;
+}
+
+.reg-card {
+  width: 100%;
+  max-width: 420px;
+  background: #0f1a33;
+  border: 1px solid #1b3f83;
+  border-radius: 14px;
+  padding: 35px 35px 45px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  animation: regFade 0.4s ease-in-out;
+}
+
+@keyframes regFade {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reg-title {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* ===== FORM ===== */
+.reg-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reg-label {
+  color: #d7e2ff;
+  font-size: 0.95rem;
+  margin-top: 10px;
+}
+
+.reg-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: #0a1228;
+  border: 1px solid #1b3f83;
+  color: white;
+  outline: none;
+  font-size: 0.95rem;
+  transition: 0.2s;
+}
+
+.reg-input:focus {
+  border-color: #3d7bff;
+  box-shadow: 0 0 8px #3d7bff40;
+}
+
+/* ===== MESSAGES ===== */
+.reg-error {
+  background: rgba(255, 60, 60, 0.1);
+  border-left: 3px solid #ff3c3c;
+  color: #ff8b8b;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.reg-success {
+  background: rgba(0, 255, 120, 0.1);
+  border-left: 3px solid #00d57f;
+  color: #83ffca;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+/* ===== BUTTON ===== */
+.reg-btn {
+  margin-top: 20px;
+  padding: 14px;
+  border-radius: 10px;
+  background: #195bff;
+  border: none;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.reg-btn:hover {
+  background: #0f45c9;
+}
+
+.reg-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ===== LINK ===== */
+.reg-link-text {
+  margin-top: 25px;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #bfcaf7;
+}
+
+.reg-link {
+  color: #3d7bff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reg-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .reg-card {
+    padding: 25px 20px 35px;
+    max-width: 360px;
+  }
+}
