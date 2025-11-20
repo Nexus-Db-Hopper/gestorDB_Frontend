@@ -1,0 +1,58 @@
+/* ---------------------------
+   NAVBAR NEXUS (NO CONFLICT)
+   Prefijo: nx-
+---------------------------- */
+
+.nx-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  padding: 0 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content:space-evenly;
+
+  background: rgba(20, 20, 28, 0.45);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  color: white;
+  z-index: 9999;
+}
+
+.nx-logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: ;
+  
+}
+
+.nx-nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nx-nav-links li {
+  cursor: pointer;
+  font-size: 1rem;
+  transition: opacity 0.25s ease;
+}
+
+.nx-nav-links li:hover {
+  opacity: 0.7;
+}
+
+.nx-nav-right {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+

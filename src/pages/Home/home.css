@@ -1,4 +1,8 @@
 /* ===== LANDING GENERAL ===== */
+html {
+  scroll-behavior: smooth;
+}
+
 .landing {
   min-height: 100vh;
   width: 100%;
@@ -57,6 +61,7 @@
 /* ===== HERO SECTION ===== */
 .hero {
   z-index: 2;
+  margin-top: 200px;
   position: relative;
   display: flex;
   align-items: center;
@@ -166,6 +171,93 @@
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
   border-color: #2f63d1;
 }
+
+/* ===== ABOUT US (prefijo abt-) ===== */
+.abt-section {
+  margin-top: 100px;
+  padding: 70px 10%;
+  background: rgba(15, 25, 50, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(10px);
+}
+
+.abt-container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.abt-text {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.abt-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.abt-description {
+  font-size: 1.05rem;
+  opacity: 0.8;
+  line-height: 1.7;
+  margin-bottom: 15px;
+}
+
+/* Highlights */
+.abt-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.abt-card {
+  padding: 25px;
+  background: #0f1a33;
+  border-radius: 12px;
+  border: 1px solid #1b3f83;
+  text-align: center;
+  transition: 0.25s ease;
+}
+
+.abt-card:hover {
+  transform: translateY(-6px);
+  background: #152347;
+  border-color: #2f63d1;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.abt-card i {
+  font-size: 2rem;
+  color: #195bff;
+  margin-bottom: 12px;
+}
+
+.abt-card h4 {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.abt-card p {
+  font-size: 0.95rem;
+  opacity: 0.75;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .abt-title {
+    font-size: 2rem;
+  }
+  .abt-description {
+    font-size: 1rem;
+  }
+}
+
 
 /* ===== CTA FINAL ===== */
 .cta {

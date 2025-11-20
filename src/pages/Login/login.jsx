@@ -1,109 +1,95 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { loginUser } from "../../services/authservice";
-// Importar los nuevos componentes reutilizables
-import Card from "../../components/Card/Card";
-import Input from "../../components/Input/Input";
-import Button from "../../components/Button/Button";
-// Importar los estilos generales de las páginas de autenticación
-import "../../styles/AuthPages.css";
+import "./login.css";
+import Navbar from "../../components/Navbar/Navbar";
 
-function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState(""); // Estado para mensajes de error
-    const [loading, setLoading] = useState(false); // Estado para controlar el loading del botón
-    const navigate = useNavigate();
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-    // Mensajes de validación más formales y cálidos
-    const validateForm = () => {
-        if (!email.trim()) {
-            setError("Por favor, ingresa tu correo electrónico para continuar.");
-            return false;
-        }
-        if (!/\S+@\S+\.\S+/.test(email)) {
-            setError("El formato del correo electrónico no es válido. Por favor, verifica.");
-            return false;
-        }
-        if (!password.trim()) {
-            setError("La contraseña es un campo obligatorio. Por favor, ingresa tu clave.");
-            return false;
-        }
-        return true;
-    };
+  const validateForm = () => {
+    if (!email.trim()) return setError("Email is required.");
+    if (!/\S+@\S+\.\S+/.test(email))
+      return setError("Invalid email format.");
+    if (!password.trim()) return setError("Password is required.");
+    return true;
+  };
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        setError(""); // Limpiar errores previos
-        setLoading(true); // Activar estado de carga
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
 
-        if (!validateForm()) {
-            setLoading(false); // Desactivar carga si la validación falla
-            return;
-        }
+    if (!validateForm()) {
+      setLoading(false);
+      return;
+    }
 
-        try {
-            const response = await loginUser({ email, password });
+    try {
+      const response = await loginUser({ email, password });
 
-            if (response && response.accessToken) {
-                localStorage.setItem("token", response.accessToken);
-                localStorage.setItem("refresh", response.refreshToken);
-                // Considera usar una notificación más sutil en lugar de alert
-                // alert("¡Inicio de sesión exitoso! Te damos la bienvenida.");
-                navigate("/"); // Redirigir a la página principal
-            } else {
-                // Esto podría ocurrir si handleResponse devuelve { success: true } pero sin tokens
-                setError("Credenciales incorrectas o un error inesperado. Por favor, intenta de nuevo.");
-            }
-        } catch (err) {
-            // handleResponse ahora lanza un Error con el mensaje del backend
-            setError(err.message || "Ha ocurrido un error al iniciar sesión. Por favor, inténtalo más tarde.");
-            console.error("Login error:", err);
-        } finally {
-            setLoading(false); // Desactivar estado de carga
-        }
-    };
+      if (response?.accessToken) {
+        localStorage.setItem("token", response.accessToken);
+        localStorage.setItem("refresh", response.refreshToken);
+        navigate("/dashboard");
+      } else {
+        setError("Invalid credentials. Please try again.");
+      }
+    } catch (err) {
+      setError(err.message || "Unexpected server error.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    return (
-        <div className="auth-page-container"> {/* Contenedor para centrar la tarjeta */}
-            <Card>
-                <h2>Bienvenido de nuevo</h2>
-                <form onSubmit={handleLogin} className="auth-form-content"> {/* Clase para espaciado interno */}
-                    <Input
-                        id="email"
-                        label="Correo Electrónico"
-                        type="email"
-                        placeholder="tu.correo@ejemplo.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        error={error.includes("correo") || error.includes("Credenciales") ? error : ""} // Mostrar error específico del email
-                    />
-                    <Input
-                        id="password"
-                        label="Contraseña"
-                        type="password"
-                        placeholder="Ingresa tu contraseña"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        error={error.includes("contraseña") || error.includes("Credenciales") ? error : ""} // Mostrar error específico de la contraseña
-                    />
-                    {/* Mostrar errores generales que no son específicos de un campo */}
-                    {error && !error.includes("correo") && !error.includes("contraseña") && !error.includes("Credenciales") && (
-                        <p className="error-message">{error}</p>
-                    )}
+  return (
+    
+    <div className="log-container">
 
-                    <Button type="submit" loading={loading}>
-                        Iniciar Sesión
-                    </Button>
-                </form>
-                <p className="auth-link-text">
-                    ¿Aún no tienes una cuenta? <Link to="/register" className="auth-link">Regístrate aquí</Link>
-                </p>
-            </Card>
-        </div>
-    );
+      <Navbar currentPage="login" />
+
+      <div className="log-card">
+        <h2 className="log-title">Welcome Back</h2>
+
+        <form onSubmit={handleLogin} className="log-form">
+          <label className="log-label">Email</label>
+          <input
+            id="email"
+            type="email"
+            placeholder="you@example.com"
+            className="log-input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <label className="log-label">Password</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Your password"
+            className="log-input"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          {error && <p className="log-error">{error}</p>}
+
+          <button type="submit" className="log-btn" disabled={loading}>
+            {loading ? "Signing in..." : "Sign In"}
+          </button>
+        </form>
+
+        <p className="log-link-text">
+          Don't have an account?{" "}
+          <Link to="/register" className="log-link">
+            Register here
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
 }
-
-export default Login;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../../services/authservice";
 import "./register.css";
+import Navbar from "../../components/Navbar/Navbar";
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -72,6 +73,8 @@ export default function Register() {
 
   return (
     <div className="reg-container">
+      <Navbar currentPage="register" />
+
       <div className="reg-card">
         <h2 className="reg-title">Create Account</h2>
 

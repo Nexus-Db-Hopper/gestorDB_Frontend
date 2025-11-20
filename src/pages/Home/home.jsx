@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./home.css";
 import 'primeicons/primeicons.css';
+import Navbar from "../../components/Navbar/Navbar";
         
 
 export default function Home() {
@@ -8,6 +9,8 @@ export default function Home() {
 
   return (
     <div className="landing">
+
+      <Navbar />
 
       {/* BACKGROUND ANIMATED BLOBS */}
       <div className="bg-blob blob1"></div>
@@ -29,14 +32,7 @@ export default function Home() {
             Easily create, configure, and manage SQL and NoSQL instances.
           </p>
 
-          <div className="hero-buttons">
-            <button className="btn-primary" onClick={() => navigate("/login")}>
-              Sign In
-            </button>
-            <button className="btn-secondary" onClick={() => navigate("/register")}>
-              Create Account
-            </button>
-          </div>
+         
         </div>
 
         <img
@@ -76,6 +72,51 @@ export default function Home() {
           </div>
         </div>
       </section>
+      
+      {/* ABOUT US */}
+<section className="abt-section" id="about-us">
+  <div className="abt-container">
+    
+    <div className="abt-text">
+      <h2 className="abt-title">About Us</h2>
+      <p className="abt-description">
+        NexusDB is a modern platform created to simplify database management for developers,
+        teams, and enterprises. We provide tools inspired by leading cloud providers such as 
+        MongoDB Atlas, Azure, and AWS RDS — but fully unified in one intuitive interface.
+      </p>
+
+      <p className="abt-description">
+        Our mission is to empower you to deploy, monitor, and manage SQL and NoSQL engines
+        effortlessly, giving you the freedom to focus on what truly matters: building great
+        applications.
+      </p>
+    </div>
+
+    <div className="abt-highlights">
+      <div className="abt-card">
+        <i className="pi pi-users"></i>
+        <h4>Focused on Developers</h4>
+        <p>Designed for simplicity, speed, and real productivity.</p>
+      </div>
+
+      <div className="abt-card">
+        <i className="pi pi-server"></i>
+        <h4>Unified Management</h4>
+        <p>Handle SQL & NoSQL engines from one single dashboard.</p>
+      </div>
+
+      <div className="abt-card">
+        <i className="pi pi-lock"></i>
+        <h4>Secure by Design</h4>
+        <p>Built with best practices for authenticated, safe environments.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
 
       {/* CTA */}
       <section className="cta">
