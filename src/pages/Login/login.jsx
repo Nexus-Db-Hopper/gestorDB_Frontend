@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { loginUser } from "../../services/authservice";
+import { loginUser, getProfile } from "../../services/authservice";
 import "./login.css";
 import Navbar from "../../components/Navbar/Navbar";
 
@@ -13,8 +13,7 @@ export default function Login() {
 
   const validateForm = () => {
     if (!email.trim()) return setError("Email is required.");
-    if (!/\S+@\S+\.\S+/.test(email))
-      return setError("Invalid email format.");
+    if (!/\S+@\S+\.\S+/.test(email)) return setError("Invalid email format.");
     if (!password.trim()) return setError("Password is required.");
     return true;
   };
@@ -30,12 +29,30 @@ export default function Login() {
     }
 
     try {
+      //  Login para obtener tokens
       const response = await loginUser({ email, password });
 
       if (response?.accessToken) {
         localStorage.setItem("token", response.accessToken);
         localStorage.setItem("refresh", response.refreshToken);
-        navigate("/dashboard");
+
+        //  Obtener perfil para saber el rol
+        const profile = await getProfile();
+
+        if (profile && profile.role) {
+          localStorage.setItem("role", profile.role); // Ajusta según el backend
+        } else {
+          localStorage.setItem("role", "User"); // fallback
+        }
+
+        //  Redirigir según rol
+        if (profile.role === "Admin") {
+          navigate("/dashboard/admin");
+        } else if (profile.role === "User") {
+          navigate("/dashboard/user");
+        } else {
+          navigate("/unauthorized");
+        }
       } else {
         setError("Invalid credentials. Please try again.");
       }
@@ -47,9 +64,7 @@ export default function Login() {
   };
 
   return (
-    
     <div className="log-container">
-
       <Navbar currentPage="login" />
 
       <div className="log-card">
