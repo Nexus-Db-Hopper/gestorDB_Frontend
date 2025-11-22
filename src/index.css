@@ -1,7 +1,24 @@
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+ 
+* {
+  box-sizing: border-box;
+}
+
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  overflow-x: hidden;
+
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
