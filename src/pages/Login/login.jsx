@@ -13,7 +13,7 @@ export default function Login() {
 
   const validateForm = () => {
     if (!email.trim()) return setError("Email is required.");
-    if (!/\S+@\S+\.\S+/.test(email)) return setError("Invalid email format.");
+    if (!/\S+@\S+\.\S+/.test(email)) return setError("Invalid email example@email.com.");
     if (!password.trim()) return setError("Password is required.");
     return true;
   };
