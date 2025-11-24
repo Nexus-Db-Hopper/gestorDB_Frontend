@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5138/instance";
+const API_URL = "http://localhost:5138/api/instances";
 
 // Create an axios instance with the Authorization header
 const axiosInstance = axios.create({
@@ -58,10 +58,25 @@ export const getInstancesByUser = async (userId) => {
   return response.data;
 };
 
+// Check if an instance exists for a user
+export const checkInstanceExists = async (userId) => {
+  try {
+    await getInstancesByUser(userId);
+    return true; // Si la petición tiene éxito, significa que encontró una instancia
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      return false; // 404 significa que no encontró instancia para ese usuario
+    }
+    throw error; // Lanza otros errores (de red, de servidor, etc.)
+  }
+};
+
+
 export default {
   createInstance,
   getInstances,
   getMyInstance,
   queryInstance,
   getInstancesByUser,
+  checkInstanceExists,
 };
