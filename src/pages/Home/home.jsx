@@ -33,8 +33,9 @@ export default function Home() {
           </div>
 
           <img
-            src="/server-illust.png"
-            alt="Database Illustration"
+          
+            src="/public/Image.png"
+            alt="/public/Image.png"
             className="hero-img"
           />
         </section>

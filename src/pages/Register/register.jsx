@@ -79,25 +79,32 @@ export default function Register() {
         <h2 className="reg-title">Create Account</h2>
 
         <form onSubmit={handleSubmit} className="reg-form">
-          <label className="reg-label">Name</label>
-          <input
-            id="Name"
-            type="text"
-            placeholder="Your name"
-            value={form.Name}
-            onChange={handleChange}
-            className="reg-input"
-          />
+        <div className="reg-row">
+  <div className="reg-group">
+    <label className="reg-label">Name</label>
+    <input
+      id="Name"
+      type="text"
+      placeholder="Your name"
+      value={form.Name}
+      onChange={handleChange}
+      className="reg-input"
+    />
+  </div>
 
-          <label className="reg-label">Last Name</label>
-          <input
-            id="LastName"
-            type="text"
-            placeholder="Your last name"
-            value={form.LastName}
-            onChange={handleChange}
-            className="reg-input"
-          />
+  <div className="reg-group">
+    <label className="reg-label">Last Name</label>
+    <input
+      id="LastName"
+      type="text"
+      placeholder="Your last name"
+      value={form.LastName}
+      onChange={handleChange}
+      className="reg-input"
+    />
+  </div>
+</div>
+ 
 
           <label className="reg-label">Email</label>
           <input

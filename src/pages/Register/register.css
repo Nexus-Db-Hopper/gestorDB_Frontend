@@ -10,13 +10,37 @@
   font-family: "Inter", sans-serif;
   color: white;
 }
+/* ==== NAME + LASTNAME ROW ==== */
+.reg-row {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.reg-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ajustar los labels dentro del row */
+.reg-row .reg-label {
+  margin-bottom: 5px;
+}
+
+/* Responsive: una columna en pantallas pequeñas */
+@media (max-width: 480px) {
+  .reg-row {
+    flex-direction: column;
+  }
+}
 
 /* ===== CARD ===== */
 .reg-card {
   width: 100%;
-  max-width: 400px;
+  max-width: 660px;
   background: #0f1a33;
-  padding: 35px;
+  padding: 40px;
   border-radius: 14px;
   border: 1px solid #1b3f83;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);

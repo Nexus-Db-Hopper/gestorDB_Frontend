@@ -1,0 +1,86 @@
+.adm-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.adm-main {
+  width: 100%;
+    height: auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 22px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.adm-header {
+  margin-bottom: 25px;
+}
+
+.adm-title {
+  font-size: 2rem;
+  color:white;
+  font-weight: 700;
+}
+
+.adm-subtitle {
+  font-size: 1rem;
+  color: #3d7bff;
+  margin-top: 4px;
+}
+
+/* Cards Dashboard */
+.adm-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.adm-card {
+  background: linear-gradient(145deg, #0f1a33, #0a1124);
+  border: 1px solid #1b3f83;
+  border-radius: 14px;
+  padding: 22px;
+  text-align: center;
+  color: white;
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+
+.adm-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  border-color: #3d7bff;
+}
+
+.adm-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #cdd8ff;
+}
+
+.adm-number {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3d7bff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .adm-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .adm-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .adm-main {
+    padding: 18px;
+  }
+}

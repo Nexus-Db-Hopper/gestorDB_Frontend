@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createInstance } from "../../../services/instanceservice"; 
-import "./AdminDashboard.css";
+import "./Styles/AssignInstance.css";
 
 export default function AssignInstances() {
   const [formData, setFormData] = useState({
@@ -57,7 +57,7 @@ export default function AssignInstances() {
   return (
     <div className="adm-content">
       <div className="log-card">
-        <h1 className="log-title">Assign Instances</h1>
+        <h1 className="log-title">Create Instances</h1>
 
         <form className="log-form" onSubmit={handleSubmit}>
           {[
@@ -92,5 +92,5 @@ export default function AssignInstances() {
         </form>
       </div>
     </div>
-  );
+  ); 
 }

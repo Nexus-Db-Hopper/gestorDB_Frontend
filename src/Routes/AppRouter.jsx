@@ -52,7 +52,7 @@ export default function AppRouter() {
          
           <Route path="AssignInstances" element={<AssignInstances />} />
           <Route path="logs" element={<Logs />} />
-          <Route path="user" element={<Users/>}/>
+          <Route path="Users" element={<Users/>}/>
         </Route>
 
         <Route path="/unauthorized" element={<Unauthorized />} />
