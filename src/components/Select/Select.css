@@ -1,0 +1,57 @@
+@import '../../styles/variables.css';
+
+.select-group {
+  margin-bottom: var(--spacing-md);
+  text-align: left;
+}
+
+.select-label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-neutral-700);
+}
+
+.select-required {
+  color: var(--color-error);
+  margin-left: var(--spacing-xs);
+}
+
+.select-field {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-base);
+  color: var(--color-neutral-900);
+  background-color: var(--color-white);
+  transition: border-color var(--transition-duration-normal) var(--transition-timing-function),
+              box-shadow var(--transition-duration-normal) var(--transition-timing-function);
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.select-field:focus {
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+.select-field-error {
+  border-color: var(--color-error);
+}
+
+.select-field:disabled {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-500);
+  cursor: not-allowed;
+  border-color: var(--color-neutral-200);
+}
+
+.select-error-message {
+  color: var(--color-error);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-xs);
+  margin-bottom: 0;
+}

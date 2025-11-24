@@ -6,6 +6,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import RoleProtectedRoute from "./RoleProtectedRoute";
 import Layout from "../components/Layout/Layout";
 import Profile from "../pages/Profile/Profile";
+import Settings from "../pages/Settings/Settings";
 import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
 import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
 import Unauthorized from "../components/Unauthorized";
@@ -49,6 +50,9 @@ export default function AppRouter() {
 
           {/* Perfil (cualquiera con token) */}
           <Route path="/profile" element={<Profile />} />
+
+          {/* Configuración (cualquiera con token) */}
+          <Route path="/settings" element={<Settings />} />
         </Route>
 
         {/* Acceso denegado */}
