@@ -59,7 +59,7 @@
 
 .data-table td {
   padding: var(--spacing-md);
-  color: var(--color-neutral-700);
+  color: var(--color-neutral-900); /* Cambiado a color oscuro */
 }
 
 .data-table-id {
@@ -92,6 +92,17 @@
 .data-table .input-field {
   padding: var(--spacing-xs) var(--spacing-sm);
   font-size: var(--font-size-sm);
+}
+
+/* Asegurar que los mensajes también sean oscuros */
+.data-table-message {
+  color: var(--color-neutral-900);
+  padding: var(--spacing-md);
+  text-align: center;
+}
+
+.data-table-message.error {
+  color: var(--color-danger); /* Mantener el color de error si está definido */
 }
 
 @media (max-width: 768px) {

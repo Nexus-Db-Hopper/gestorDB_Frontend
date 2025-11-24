@@ -54,7 +54,7 @@ body {
 }
 
 #root {
-  min-height: 100vh;
+  /* min-height: 100vh; Eliminado para evitar conflictos de altura con layout-wrapper */
   width: 100%;
   display: flex;
   flex-direction: column;
