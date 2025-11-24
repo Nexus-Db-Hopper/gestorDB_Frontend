@@ -1,22 +1,41 @@
-import { Link, Outlet } from "react-router-dom";
-import "./dashboard.css";
+import React from 'react';
+import { Toaster } from 'sonner';
+import DatabaseInfo from '../../../components/DatabaseInfo/DatabaseInfo';
+import QueryEditor from '../../../components/QueryEditor/QueryEditor';
+import DataTable from '../../../components/DataTable/DataTable';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../../../components/Tabs/Tabs';
+import './UserDashboard.css';
 
-export default function Dashboard() {
+/**
+ * Dashboard principal del usuario
+ * Incluye información de la base de datos, editor SQL y tabla CRUD
+ */
+const UserDashboard = () => {
   return (
-    <div className="dashboard-layout">
-      <aside className="sidebar">
-        <h2>NexusDB</h2>
-        <ul>
-          <li><Link to="/dashboard">Inicio</Link></li>
-          <li><Link to="/dashboard/editor">Query Editor</Link></li>
-          <li><Link to="/dashboard/data">Data Manager</Link></li>
-        </ul>
-      </aside>
-
-      <main className="dashboard-content">
-        <Outlet />
-      </main>
-    </div>
+    <>
+      <Toaster position="top-right" richColors />
+      <div className="user-dashboard">
+        <div className="user-dashboard-container">
+          <DatabaseInfo dbId="1" />
+          
+          <Tabs defaultValue="query" className="user-dashboard-tabs">
+            <TabsList className="user-dashboard-tabs-list">
+              <TabsTrigger value="query">Editor de Consultas</TabsTrigger>
+              <TabsTrigger value="data">Datos (CRUD)</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="query">
+              <QueryEditor />
+            </TabsContent>
+            
+            <TabsContent value="data">
+              <DataTable />
+            </TabsContent>
+          </Tabs>
+        </div>
+      </div>
+    </>
   );
-}
+};
 
+export default UserDashboard;

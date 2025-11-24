@@ -1,0 +1,123 @@
+@import '../../styles/variables.css';
+
+.settings-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+}
+
+.settings-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.settings-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-neutral-900);
+  margin: 0 0 var(--spacing-xs) 0;
+}
+
+.settings-subtitle {
+  color: var(--color-neutral-500);
+  font-size: var(--font-size-base);
+  margin: 0;
+}
+
+.settings-card {
+  padding: var(--spacing-xl) !important;
+  max-width: none !important;
+  text-align: left !important;
+}
+
+.settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.section-icon {
+  color: var(--color-primary-500);
+  flex-shrink: 0;
+}
+
+.setting-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md) 0;
+}
+
+.setting-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.setting-label {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-neutral-900);
+  margin: 0;
+}
+
+.setting-description {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-500);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Para los selects dentro de setting-item */
+.setting-item .select-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-neutral-200);
+}
+
+@media (max-width: 768px) {
+  .settings-page {
+    padding: var(--spacing-md);
+  }
+
+  .setting-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .setting-item .select-group {
+    width: 100%;
+  }
+
+  .settings-actions {
+    justify-content: stretch;
+  }
+
+  .settings-actions .button {
+    width: 100%;
+  }
+}

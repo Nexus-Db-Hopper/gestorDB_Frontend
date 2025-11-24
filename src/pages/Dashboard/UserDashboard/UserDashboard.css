@@ -1,0 +1,44 @@
+@import '../../../styles/variables.css';
+
+.user-dashboard {
+  width: 100%;
+  padding: var(--spacing-xl);
+  background-color: var(--color-neutral-50);
+  min-height: 100%; /* Ocupa todo el espacio disponible */
+}
+
+.user-dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.user-dashboard-tabs {
+  width: 100%;
+}
+
+.user-dashboard-tabs-list {
+  max-width: 450px;
+}
+
+@media (max-width: 768px) {
+  .user-dashboard {
+    padding: var(--spacing-md);
+  }
+  
+  .user-dashboard-container {
+    gap: var(--spacing-lg);
+  }
+  
+  .user-dashboard-tabs-list {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-dashboard {
+    padding: var(--spacing-sm);
+  }
+}
