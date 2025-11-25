@@ -1,0 +1,60 @@
+/* No longer need to import variables.css if not directly used here */
+
+/* Styles for the content within the UserDashboardLayout's main area */
+.user-dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Consistent spacing with admin sections */
+  margin-top: 25px; /* Space below the header in UserDashboardLayout */
+}
+
+/* Styles for informational messages (loading, error, no instance) */
+.user-dashboard-info-message {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(61, 123, 255, 0.1); /* Light blue background */
+  color: #3d7bff; /* Blue text */
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  border: 1px solid rgba(61, 123, 255, 0.3);
+}
+
+.user-dashboard-info-message.error {
+  background-color: rgba(255, 55, 55, 0.1); /* Light red background */
+  color: #ff6969; /* Red text */
+  border: 1px solid rgba(255, 55, 55, 0.3);
+}
+
+/* Query Results Section - adapted from admin card/section styling */
+.query-results-section {
+  background: rgba(255, 255, 255, 0.04); /* Similar to adm-main background */
+  border-radius: 14px; /* Consistent border-radius */
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); /* Softer shadow than main */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 22px;
+  margin-top: 15px; /* Space from previous section */
+}
+
+.results-title {
+  font-size: 1.4rem;
+  color: #cdd8ff; /* Similar to adm-card h3 */
+  font-weight: 600;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments if needed for internal content */
+@media (max-width: 540px) {
+  .user-dashboard-content {
+    gap: 15px;
+  }
+  .query-results-section {
+    padding: 18px;
+  }
+  .results-title {
+    font-size: 1.2rem;
+  }
+}

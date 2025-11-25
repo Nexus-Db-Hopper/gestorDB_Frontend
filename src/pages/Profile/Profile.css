@@ -1,36 +1,142 @@
-/* src/pages/Profile/Profile.css */
-@import '../../styles/variables.css'; /* Importar las variables CSS */
-@import '../../styles/AuthPages.css'; /* Para los mensajes de error/éxito */
+@import '../../styles/variables.css';
+@import '../../styles/AuthPages.css';
 
-.profile-page-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Alinea arriba para que no se centre verticalmente en pantallas grandes */
-    min-height: calc(100vh - var(--spacing-3xl) * 2); /* Ajusta para la altura de la navbar y padding */
-    padding: var(--spacing-3xl) var(--spacing-lg); /* Espaciado generoso */
-    background-color: var(--color-neutral-50); /* Fondo muy claro */
-    font-family: var(--font-family-base);
+.profile-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
 }
 
-.profile-page-container h2 {
+.profile-header {
+    margin-bottom: var(--spacing-xl);
+}
+
+.profile-title {
     font-size: var(--font-size-3xl);
     font-weight: var(--font-weight-bold);
     color: var(--color-neutral-900);
-    margin-bottom: var(--spacing-lg);
+    margin: 0 0 var(--spacing-xs) 0;
 }
 
-.profile-form-content {
+.profile-subtitle {
+    color: var(--color-neutral-500);
+    font-size: var(--font-size-base);
+    margin: 0;
+}
+
+.profile-card {
+    padding: var(--spacing-xl) !important;
+    max-width: none !important;
+    text-align: left !important;
+    margin-bottom: var(--spacing-xl);
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-neutral-200);
+}
+
+.profile-details {
+    flex: 1;
+}
+
+.profile-name {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-900);
+    margin: 0 0 var(--spacing-xs) 0;
+}
+
+.profile-role {
+    color: var(--color-neutral-500);
+    font-size: var(--font-size-base);
+    margin: 0;
+}
+
+.profile-form {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md); /* Espacio entre inputs y botones */
-    width: 100%;
+    gap: var(--spacing-md);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
 }
 
 .profile-actions {
     display: flex;
-    justify-content: flex-end; /* Alinear botones a la derecha */
+    justify-content: flex-end;
     gap: var(--spacing-md);
     margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--color-neutral-200);
+}
+
+.profile-stats-card {
+    padding: var(--spacing-xl) !important;
+    max-width: none !important;
+    text-align: left !important;
+}
+
+.stats-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-neutral-900);
+    margin: 0 0 var(--spacing-md) 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.stat-item {
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    text-align: center;
+}
+
+.stat-item.stat-primary {
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+.stat-item.stat-success {
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+.stat-item.stat-warning {
+    background-color: rgba(255, 193, 7, 0.1);
+}
+
+.stat-number {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    margin: 0 0 var(--spacing-xs) 0;
+}
+
+.stat-primary .stat-number {
+    color: var(--color-primary-500);
+}
+
+.stat-success .stat-number {
+    color: var(--color-success);
+}
+
+.stat-warning .stat-number {
+    color: var(--color-warning);
+}
+
+.stat-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-500);
+    margin: 0;
 }
 
 .profile-loading {
@@ -41,4 +147,29 @@
     font-weight: var(--font-weight-medium);
 }
 
-/* Los estilos para .error-message y .success-message se importan de AuthPages.css */
+@media (max-width: 768px) {
+    .profile-page {
+        padding: var(--spacing-md);
+    }
+
+    .profile-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-actions {
+        flex-direction: column-reverse;
+    }
+
+    .profile-actions .button {
+        width: 100%;
+    }
+}

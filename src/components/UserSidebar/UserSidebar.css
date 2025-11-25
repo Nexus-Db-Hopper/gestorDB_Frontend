@@ -1,0 +1,161 @@
+/* ---------------- SIDEBAR ---------------- */
+.sidebar {
+  width: 270px;
+  height: 100vh;
+  padding: 28px 18px;
+  border-radius: 18px;
+  color: #fff;
+  position: fixed;
+  left: 10px;
+  top: 10px;
+
+  background: linear-gradient(180deg, #0f1a33 0%, #0a1124 50%, #0f1a33 100%);
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+
+  display: flex;
+  flex-direction: column;
+
+  transition: transform 0.3s ease;
+}
+
+/* TÍTULO */
+.titleU { /* Changed from titleA */
+  text-align: center;
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+/* ---------------- NAV LIST ---------------- */
+.list {
+  padding: 0;
+  list-style: none;
+  margin-top: 10px;
+}
+.user-brand { /* Changed from adm-brand */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 10px;
+}
+
+.user-logo { /* Changed from adm-logo */
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+
+.list li {
+  margin-bottom: 8px;
+}
+
+.list a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 14px;
+  text-decoration: none;
+  color: #dbe4ff;
+  font-weight: 600;
+  border-radius: 10px;
+
+  font-size: 1rem;
+
+  transition: 
+    background 0.25s ease,
+    padding-left 0.25s ease,
+    color 0.25s ease;
+}
+
+/* ÍCONOS PRIME */
+.list a i {
+  font-size: 1.2rem;
+  opacity: 0.85;
+  transition: transform 0.25s ease;
+}
+
+.list a:hover {
+  background: rgba(255,255,255,0.12);
+  padding-left: 22px;
+  color: #ffffff;
+}
+
+.list a:hover i {
+  transform: scale(1.15);
+  opacity: 1;
+}
+
+/* ---------------- LOGOUT ---------------- */
+.logout-container {
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.logout-button {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(255, 55, 55, 0.10);
+  border: 2px solid rgba(255, 55, 55, 0.35);
+  color: #ff6969;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-start;
+
+  transition: 
+    background 0.25s ease,
+    padding-left 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.logout-button i {
+  font-size: 1.2rem;
+}
+
+.logout-button:hover {
+  background: rgba(255, 55, 55, 0.22);
+  border-color: rgba(255, 55, 55, 0.6);
+  padding-left: 22px;
+  transform: scale(1.03);
+}
+
+
+/* ---------------- HAMBURGER (MOBILE) ---------------- */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  font-size: 2.1rem;
+  color: #195bff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 500;
+}
+
+
+/* ---------------- RESPONSIVE ---------------- */
+@media(max-width: 920px) {
+  .sidebar {
+    transform: translateX(-130%);
+  }
+
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  .hamburger {
+    display: block;
+  }
+}

@@ -2,16 +2,19 @@
 @import '../../styles/variables.css'; /* Importar las variables CSS */
 
 .card {
-  background-color: var(--color-white);
-  padding: var(--spacing-2xl); /* Espaciado generoso */
+  /* Adopt admin card styling for consistency */
+  background: linear-gradient(145deg, #0f1a33, #0a1124); /* Dark gradient background */
+  border: 1px solid #1b3f83; /* Dark border */
   border-radius: var(--border-radius-lg); /* Bordes redondeados */
-  box-shadow: var(--box-shadow-lg); /* Sombra suave y elegante */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); /* Sombra suave y elegante */
+  padding: var(--spacing-2xl); /* Espaciado generoso */
   width: 100%;
   max-width: 450px; /* Ancho máximo para formularios de autenticación */
   text-align: center;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg); /* Espacio entre elementos internos de la tarjeta */
+  color: white; /* Default text color for cards */
 }
 
 /* Responsive adjustments */

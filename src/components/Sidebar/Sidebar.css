@@ -1,0 +1,120 @@
+@import '../../styles/variables.css';
+
+/* IMPORTANTE: Usar las mismas variables que Layout.css */
+:root {
+  --sidebar-width: 240px;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); 
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  box-shadow: var(--box-shadow-lg);
+  overflow-y: auto; /* Scroll solo si el menú es muy largo */
+}
+
+.sidebar-header {
+  padding: var(--spacing-xl) var(--spacing-lg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0; /* No se comprime */
+}
+
+.sidebar-brand {
+  color: var(--color-white);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+  text-align: center;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: var(--spacing-lg) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-duration-normal) var(--transition-timing-function);
+  position: relative;
+}
+
+.sidebar-link svg {
+  flex-shrink: 0;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--color-white);
+}
+
+.sidebar-link.active {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: var(--color-white);
+  border-left: 4px solid #3b82f6;
+  padding-left: calc(var(--spacing-lg) - 4px); /* Compensar el borde */
+}
+
+/* Responsive - Tablets */
+@media (max-width: 768px) {
+  :root {
+    --sidebar-width: 200px;
+  }
+
+  .sidebar {
+    width: 200px;
+  }
+
+  .sidebar-link span {
+    font-size: var(--font-size-sm);
+  }
+}
+
+/* Responsive - Móviles */
+@media (max-width: 480px) {
+  :root {
+    --sidebar-width: 60px;
+  }
+
+  .sidebar {
+    width: 60px;
+  }
+
+  .sidebar-header {
+    padding: var(--spacing-md);
+  }
+
+  .sidebar-brand {
+    font-size: var(--font-size-base);
+    writing-mode: vertical-rl; /* Texto vertical en móvil */
+    text-orientation: mixed;
+  }
+
+  .sidebar-link {
+    justify-content: center;
+    padding: var(--spacing-md);
+  }
+
+  .sidebar-link span {
+    display: none; /* Ocultar texto, solo mostrar íconos */
+  }
+
+  .sidebar-link.active {
+    padding-left: var(--spacing-md);
+  }
+}

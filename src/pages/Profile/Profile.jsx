@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { getProfile, updateProfile } from '../../services/authservice';
-// Importar los nuevos componentes reutilizables
 import Card from "../../components/Card/Card";
 import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
-// Importar los estilos generales de las páginas de autenticación para mensajes
+import Avatar from "../../components/Avatar/Avatar";
 import "../../styles/AuthPages.css";
-import './Profile.css'; // Estilos específicos para el perfil
+import './Profile.css';
 
 function Profile() {
     const [userData, setUserData] = useState({
@@ -55,14 +54,6 @@ function Profile() {
         setIsEditing(!isEditing);
         setError('');
         setSuccessMessage('');
-        // Si se cancela la edición, recargar los datos originales (opcional, pero buena UX)
-        if (isEditing) {
-            setLoading(true); // Para que el useEffect se dispare de nuevo
-            // Esto es una simplificación, en un caso real podrías guardar una copia de los datos originales
-            // y restaurarlos aquí sin hacer otra llamada a la API.
-            // Por ahora, simplemente reseteamos el estado de carga para que el useEffect se ejecute.
-            // Opcional: fetchProfile(); // Llamar de nuevo para obtener los datos originales
-        }
     };
 
     const handleSubmit = async (e) => {
@@ -71,7 +62,6 @@ function Profile() {
         setSuccessMessage('');
         setLoading(true);
 
-        // Validaciones de frontend
         if (!userData.name.trim()) {
             setError('El nombre es un campo obligatorio. Por favor, ingresa tu nombre.');
             setLoading(false);
@@ -87,12 +77,11 @@ function Profile() {
             const response = await updateProfile({
                 name: userData.name,
                 lastName: userData.lastName,
-                // No enviamos email ni role si no son editables
             });
 
             if (response && response.success) {
                 setSuccessMessage('¡Tu perfil ha sido actualizado con éxito!');
-                setIsEditing(false); // Salir del modo edición
+                setIsEditing(false);
             } else {
                 setError(response.message || 'Ha ocurrido un error al actualizar tu perfil. Por favor, intenta de nuevo.');
             }
@@ -108,55 +97,84 @@ function Profile() {
         return <div className="profile-loading">Cargando tu perfil, por favor espera...</div>;
     }
 
-    return (
-        <div className="profile-page-container"> {/* Contenedor para centrar la tarjeta */}
-            <Card>
-                <h2>Mi Perfil</h2>
-                {error && <p className="error-message">{error}</p>}
-                {successMessage && <p className="success-message">{successMessage}</p>}
+    // Generar iniciales para el avatar
+    const initials = `${userData.name.charAt(0)}${userData.lastName.charAt(0)}`.toUpperCase();
+    const fullName = `${userData.name} ${userData.lastName}`;
 
-                <form onSubmit={handleSubmit} className="profile-form-content">
+    return (
+        <div className="profile-page">
+            <div className="profile-header">
+                <h1 className="profile-title">Mi Perfil</h1>
+                <p className="profile-subtitle">Gestiona tu información personal y preferencias</p>
+            </div>
+
+            {error && <p className="error-message">{error}</p>}
+            {successMessage && <p className="success-message">{successMessage}</p>}
+
+            <Card className="profile-card">
+                <div className="profile-info">
+                    <Avatar 
+                        src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${userData.email}`}
+                        alt={fullName}
+                        fallback={initials}
+                        size="lg"
+                    />
+                    <div className="profile-details">
+                        <h2 className="profile-name">{fullName}</h2>
+                        <p className="profile-role">
+                            {userData.role === 'Admin' ? 'Administrador' : 'Estudiante'} - {userData.email}
+                        </p>
+                    </div>
+                </div>
+
+                <form onSubmit={handleSubmit} className="profile-form">
+                    <div className="form-row">
+                        <Input
+                            id="name"
+                            label="Nombre"
+                            type="text"
+                            name="name"
+                            value={userData.name}
+                            onChange={handleChange}
+                            disabled={!isEditing}
+                            required
+                            error={error.includes("nombre") ? error : ""}
+                        />
+                        <Input
+                            id="lastName"
+                            label="Apellido"
+                            type="text"
+                            name="lastName"
+                            value={userData.lastName}
+                            onChange={handleChange}
+                            disabled={!isEditing}
+                            required
+                            error={error.includes("apellido") ? error : ""}
+                        />
+                    </div>
+
+                    <div className="form-row">
+                        <Input
+                            id="email"
+                            label="Correo Electrónico"
+                            type="email"
+                            value={userData.email}
+                            disabled
+                        />
+                        <Input
+                            id="role"
+                            label="Rol"
+                            type="text"
+                            value={userData.role === 'Admin' ? 'Administrador' : 'Usuario'}
+                            disabled
+                        />
+                    </div>
+
                     <Input
                         id="id"
                         label="ID de Usuario"
                         type="text"
                         value={userData.id}
-                        disabled
-                    />
-                    <Input
-                        id="name"
-                        label="Nombre"
-                        type="text"
-                        name="name"
-                        value={userData.name}
-                        onChange={handleChange}
-                        disabled={!isEditing}
-                        required
-                        error={error.includes("nombre") ? error : ""}
-                    />
-                    <Input
-                        id="lastName"
-                        label="Apellido"
-                        type="text"
-                        name="lastName"
-                        value={userData.lastName}
-                        onChange={handleChange}
-                        disabled={!isEditing}
-                        required
-                        error={error.includes("apellido") ? error : ""}
-                    />
-                    <Input
-                        id="email"
-                        label="Correo Electrónico"
-                        type="email"
-                        value={userData.email}
-                        disabled
-                    />
-                    <Input
-                        id="role"
-                        label="Rol"
-                        type="text"
-                        value={userData.role}
                         disabled
                     />
 
@@ -167,16 +185,35 @@ function Profile() {
                             </Button>
                         ) : (
                             <>
-                                <Button type="submit" loading={loading}>
-                                    Guardar Cambios
-                                </Button>
                                 <Button type="button" onClick={handleEditToggle} variant="ghost">
                                     Cancelar
+                                </Button>
+                                <Button type="submit" loading={loading} variant="primary">
+                                    Guardar Cambios
                                 </Button>
                             </>
                         )}
                     </div>
                 </form>
+            </Card>
+
+            {/* Estadísticas de Uso */}
+            <Card className="profile-stats-card">
+                <h3 className="stats-title">Estadísticas de Uso</h3>
+                <div className="stats-grid">
+                    <div className="stat-item stat-primary">
+                        <p className="stat-number">156</p>
+                        <p className="stat-label">Consultas Ejecutadas</p>
+                    </div>
+                    <div className="stat-item stat-success">
+                        <p className="stat-number">3</p>
+                        <p className="stat-label">Bases de Datos Activas</p>
+                    </div>
+                    <div className="stat-item stat-warning">
+                        <p className="stat-number">24h</p>
+                        <p className="stat-label">Tiempo Total de Uso</p>
+                    </div>
+                </div>
             </Card>
         </div>
     );

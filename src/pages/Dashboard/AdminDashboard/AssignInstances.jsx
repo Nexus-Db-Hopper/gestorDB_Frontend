@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { createInstance } from "../../../services/instanceservice"; 
-import "./Styles/AssignInstance.css";
+import { createInstance } from "../../../services/instanceservice";
+import { jwtDecode } from "jwt-decode"; // Reverted to named import
+import "./AdminDashboard.css";
 
 export default function AssignInstances() {
   const [formData, setFormData] = useState({
-    engine: "",
-    name: "",
-    username: "",
-    userPassword: "",
-    ownerUserId: "",
-    createdByUserId: "",
-    containerName: ""
+    engine: "mysql", // Valor por defecto para el motor
+    name: "", // Nombre de la base de datos
+    username: "", // Usuario de MySQL
+    userPassword: "", // Contraseña para el usuario de MySQL
+    ownerUserId: "", // ID del usuario de la aplicación
   });
 
   const [loading, setLoading] = useState(false);
@@ -21,6 +20,32 @@ export default function AssignInstances() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Función de validación de contraseña fuerte
+  const validatePassword = (password) => {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*]/.test(password);
+
+    if (password.length < minLength) {
+      return `Password must be at least ${minLength} characters long.`;
+    }
+    if (!hasUpperCase) {
+      return "Password must contain at least one uppercase letter.";
+    }
+    if (!hasLowerCase) {
+      return "Password must contain at least one lowercase letter.";
+    }
+    if (!hasNumber) {
+      return "Password must contain at least one number.";
+    }
+    if (!hasSpecialChar) {
+      return "Password must contain at least one special character (!@#$%^&*).";
+    }
+    return null; // La contraseña es válida
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -28,27 +53,52 @@ export default function AssignInstances() {
     setError(null);
 
     try {
-      const token = localStorage.getItem("token"); 
-      await createInstance({
+      // Validaciones básicas
+      if (!formData.engine || !formData.name || !formData.username || !formData.userPassword || !formData.ownerUserId) {
+        setError("Please fill in all required fields.");
+        setLoading(false);
+        return;
+      }
+
+      // Validar contraseña fuerte
+      const passwordError = validatePassword(formData.userPassword);
+      if (passwordError) {
+        setError(passwordError);
+        setLoading(false);
+        return;
+      }
+
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Authentication token not found. Please log in again.");
+      }
+      
+      const decodedToken = jwtDecode(token);
+      const adminId = decodedToken.nameid; 
+      if (!adminId) {
+        throw new Error("Could not identify the administrator from the token.");
+      }
+
+      const dataToSend = {
         ...formData,
         ownerUserId: Number(formData.ownerUserId),
-        createdByUserId: Number(formData.createdByUserId),
-        token, // optional
-      });
+        createdByUserId: Number(adminId),
+        containerName: "N/A", // Este campo ya no es relevante para el backend
+      };
 
-      setMessage("Instance created successfully ");
+      await createInstance(dataToSend);
+
+      setMessage("Database created and assigned successfully!");
       setFormData({
-        engine: "",
+        engine: "mysql", // Resetear a valor por defecto
         name: "",
         username: "",
         userPassword: "",
         ownerUserId: "",
-        createdByUserId: "",
-        containerName: ""
       });
     } catch (err) {
       console.error(err);
-      setError("Failed to create instance ");
+      setError(err.response?.data?.message || err.message || "Failed to create database.");
     }
 
     setLoading(false);
@@ -57,34 +107,37 @@ export default function AssignInstances() {
   return (
     <div className="adm-content">
       <div className="log-card">
-        <h1 className="log-title">Create Instances</h1>
+        <h1 className="log-title">Assign New Database</h1>
+        <p className="log-subtitle">Create a new database instance for a student.</p>
 
         <form className="log-form" onSubmit={handleSubmit}>
-          {[
-            { label: "Engine", name: "engine", type: "text", placeholder: "e.g. mysql, postgres" },
-            { label: "Instance Name", name: "name", type: "text", placeholder: "e.g. instance001" },
-            { label: "Database Username", name: "username", type: "text", placeholder: "Username for DB" },
-            { label: "User Password", name: "userPassword", type: "password", placeholder: "********" },
-            { label: "Student ID", name: "ownerUserId", type: "number", placeholder: "Owner user ID" },
-            { label: "Admin ID", name: "createdByUserId", type: "number", placeholder: "Admin ID" },
-            { label: "Container Name", name: "containerName", type: "text", placeholder: "e.g. db_instance001" },
-          ].map(field => (
-            <div className="form-group" key={field.name}>
-              <label className="log-label">{field.label}</label>
-              <input
-                className="log-input"
-                type={field.type}
-                name={field.name}
-                value={formData[field.name]}
-                onChange={handleChange}
-                required
-                placeholder={field.placeholder}
-              />
-            </div>
-          ))}
+          <div className="form-group">
+            <label className="log-label">Database Engine</label>
+            <select className="log-input" name="engine" value={formData.engine} onChange={handleChange} required>
+              <option value="mysql">MySQL</option>
+              <option value="postgresql">PostgreSQL</option>
+              {/* Añadir más opciones de motores de DB aquí si el backend los soporta */}
+            </select>
+          </div>
+          <div className="form-group">
+            <label className="log-label">Database Name</label>
+            <input className="log-input" type="text" name="name" value={formData.name} onChange={handleChange} required placeholder="e.g., student_project_db" />
+          </div>
+          <div className="form-group">
+            <label className="log-label">Database Username</label>
+            <input className="log-input" type="text" name="username" value={formData.username} onChange={handleChange} required placeholder="e.g., student_user_01" />
+          </div>
+          <div className="form-group">
+            <label className="log-label">Database Password</label>
+            <input className="log-input" type="password" name="userPassword" value={formData.userPassword} onChange={handleChange} required placeholder="e.g., StrongP@ssw0rd! (Min 8 chars, 1 Upper, 1 Lower, 1 Num, 1 Special)" />
+          </div>
+          <div className="form-group">
+            <label className="log-label">Student ID (Owner)</label>
+            <input className="log-input" type="number" name="ownerUserId" value={formData.ownerUserId} onChange={handleChange} required placeholder="e.g., 123 (ID of the student user)" />
+          </div>
 
           <button type="submit" className="log-btn" disabled={loading}>
-            {loading ? "Creating..." : "Create Instance"}
+            {loading ? "Creating..." : "Create Database"}
           </button>
 
           {message && <p className="log-success">{message}</p>}
@@ -92,5 +145,5 @@ export default function AssignInstances() {
         </form>
       </div>
     </div>
-  ); 
+  );
 }

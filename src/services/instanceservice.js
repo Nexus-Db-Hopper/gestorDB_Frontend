@@ -1,8 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5138/instance";
+const API_URL = "https://nexusbd-backend.onrender.com/api/instances";
 
-// Create an axios instance with the Authorization header
 const axiosInstance = axios.create({
   baseURL: API_URL,
   headers: {
@@ -10,7 +9,6 @@ const axiosInstance = axios.create({
   },
 });
 
-// Add a request interceptor to include the token
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -22,46 +20,66 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Create a new instance
+/**
+ * Crea una nueva instancia (base de datos lógica y usuario MySQL).
+ * @param {object} instanceData - Los datos completos para crear la instancia.
+ */
 export const createInstance = async (instanceData) => {
-  const token = localStorage.getItem("token");
-  const response = await axios.post(API_URL, instanceData, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await axiosInstance.post("/", instanceData);
   return response.data;
 };
 
-// Get all instances
-export const getInstances = async () => {
-  const response = await axiosInstance.get("/");
-  return response.data;
-};
-
-// Get the authenticated user's instance
+/**
+ * Obtiene la instancia asignada al usuario autenticado.
+ */
 export const getMyInstance = async () => {
   const response = await axiosInstance.get("/my-instance");
   return response.data;
 };
 
-// Query an instance
-export const queryInstance = async (payload) => {
-  const response = await axiosInstance.post("/query", payload);
+/**
+ * Ejecuta una consulta SQL en la instancia del usuario autenticado.
+ * @param {object} payload - Objeto que contiene la consulta y el motor.
+ * @param {string} payload.query - La consulta SQL a ejecutar.
+ * @param {string} payload.engine - El motor de la base de datos (ej. "mysql", "postgresql").
+ */
+export const queryInstance = async ({ query, engine }) => {
+  // Ahora enviamos tanto la query como el engine
+  const response = await axiosInstance.post("/query", { query, engine });
   return response.data;
 };
 
-// Get instances by user ID
-export const getInstancesByUser = async (userId) => {
-  const response = await axiosInstance.get(`/user/${userId}`);
+/**
+ * Obtiene todas las instancias (para el Admin).
+ */
+export const getAllInstances = async () => {
+  const response = await axiosInstance.get("/");
+  return response.data;
+};
+
+/**
+ * Activa (desbloquea) una instancia.
+ * @param {number} instanceId - El ID de la instancia a activar.
+ */
+export const startInstance = async (instanceId) => {
+  const response = await axiosInstance.put(`/${instanceId}/start`);
+  return response.data;
+};
+
+/**
+ * Desactiva (bloquea) una instancia.
+ * @param {number} instanceId - El ID de la instancia a desactivar.
+ */
+export const stopInstance = async (instanceId) => {
+  const response = await axiosInstance.put(`/${instanceId}/stop`);
   return response.data;
 };
 
 export default {
   createInstance,
-  getInstances,
   getMyInstance,
   queryInstance,
-  getInstancesByUser,
+  getAllInstances,
+  startInstance,
+  stopInstance,
 };

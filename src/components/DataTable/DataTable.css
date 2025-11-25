@@ -1,0 +1,138 @@
+@import '../../styles/variables.css';
+
+.data-table-card {
+  /* Adopt admin card styling for consistency */
+  background: linear-gradient(145deg, #0f1a33, #0a1124);
+  border: 1px solid #1b3f83;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  padding: var(--spacing-lg) !important;
+  max-width: none !important;
+  text-align: left !important;
+}
+
+.data-table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.data-table-title {
+  font-size: 1.4rem; /* Adjusted for better visibility */
+  font-weight: var(--font-weight-semibold);
+  color: #cdd8ff; /* Light color for contrast */
+  margin: 0;
+}
+
+.data-table-wrapper {
+  overflow-x: auto; /* Keep this to allow scrolling if content is still too wide */
+}
+
+.data-table {
+  width: 100%;
+  font-size: var(--font-size-sm);
+  border-collapse: collapse;
+  margin-top: 15px; /* Space from title */
+  table-layout: fixed; /* Ensures column widths are respected and prevents overflow */
+}
+
+.data-table thead tr {
+  border-bottom: 2px solid rgba(255,255,255,0.1); /* Light border */
+  background-color: rgba(255,255,255,0.08); /* Darker background for header */
+}
+
+.data-table th {
+  text-align: left;
+  padding: var(--spacing-md);
+  font-weight: var(--font-weight-semibold);
+  color: white; /* Light color for contrast */
+}
+
+.data-table tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,0.05); /* Lighter border */
+  transition: background-color var(--transition-duration-fast) var(--transition-timing-function);
+}
+
+.data-table tbody tr:hover {
+  background-color: rgba(255,255,255,0.04); /* Slightly lighter dark background on hover */
+}
+
+.data-table tbody tr.data-table-row-editing {
+  background-color: rgba(61, 123, 255, 0.1); /* Light blue for editing row */
+}
+
+.data-table td {
+  padding: var(--spacing-md);
+  color: #dbe4ff; /* Light color for contrast */
+  word-wrap: break-word; /* Ensures long text breaks and wraps */
+  overflow-wrap: break-word; /* Standard property for word wrapping */
+}
+
+.data-table-id {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-weight: var(--font-weight-medium);
+  color: white; /* Light color for contrast */
+}
+
+.data-table-auto-id {
+  color: #cdd8ff; /* Light color for contrast */
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
+.data-table-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.data-table-actions .button {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  min-width: auto;
+}
+
+/* Estilos para inputs dentro de la tabla */
+.data-table .input-group {
+  margin-bottom: 0;
+}
+
+.data-table .input-field {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  background-color: rgba(255,255,255,0.06); /* Dark input background */
+  border: 1px solid rgba(255,255,255,0.15); /* Light border */
+  color: white; /* Light text */
+}
+
+/* Asegurar que los mensajes también sean claros */
+.data-table-message {
+  color: white; /* Light color for contrast */
+  padding: var(--spacing-md);
+  text-align: center;
+}
+
+.data-table-message.error {
+  color: #ff6969; /* Red for error */
+}
+
+@media (max-width: 768px) {
+  .data-table-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .data-table-header .button {
+    width: 100%;
+  }
+  
+  .data-table {
+    font-size: 0.75rem;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: var(--spacing-sm);
+  }
+}
