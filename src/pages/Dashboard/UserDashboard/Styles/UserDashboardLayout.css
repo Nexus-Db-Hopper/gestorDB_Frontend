@@ -1,0 +1,48 @@
+.user-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.user-main {
+  width: 100%;
+  height: auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 22px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-left: 290px; /* Adjust for sidebar width + margin */
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.user-header {
+  margin-bottom: 25px;
+}
+
+.user-title {
+  font-size: 2rem;
+  color:white;
+  font-weight: 700;
+}
+
+.user-subtitle {
+  font-size: 1rem;
+  color: #3d7bff;
+  margin-top: 4px;
+}
+
+/* Responsive */
+@media (max-width: 920px) { /* Matches sidebar responsive breakpoint */
+  .user-main {
+    margin-left: 10px; /* Adjust when sidebar is hidden */
+  }
+}
+
+@media (max-width: 540px) {
+  .user-main {
+    padding: 18px;
+  }
+}

@@ -7,6 +7,11 @@
 }
 
 .query-editor-card {
+  /* Adopt admin card styling for consistency */
+  background: linear-gradient(145deg, #0f1a33, #0a1124);
+  border: 1px solid #1b3f83;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
   padding: var(--spacing-lg) !important;
   max-width: none !important;
   text-align: left !important;
@@ -22,9 +27,9 @@
 }
 
 .query-editor-title {
-  font-size: var(--font-size-base);
+  font-size: 1.4rem; /* Adjusted for better visibility */
   font-weight: var(--font-weight-semibold);
-  color: var(--color-neutral-900);
+  color: #cdd8ff; /* Light color for contrast */
   margin: 0;
 }
 
@@ -38,21 +43,32 @@
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-xs);
+  /* Ensure Button component itself has dark-theme compatible styles */
 }
 
 .query-textarea {
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-  background-color: #1e1e1e;
-  color: #d4d4d4;
-  border-color: var(--color-neutral-300);
+  background-color: #1e1e1e; /* Dark background for code */
+  color: #d4d4d4; /* Light text for code */
+  border: 1px solid rgba(255,255,255,0.15); /* Light border */
+  border-radius: 8px; /* Consistent border-radius */
+  padding: 10px;
 }
 
 .query-textarea:focus {
   background-color: #1e1e1e;
   color: #d4d4d4;
+  border-color: #3d7bff; /* Highlight on focus */
+  outline: none;
 }
 
+/* Styles for DataTable (if it uses these classes) */
 .query-results-card {
+  /* Adopt admin card styling for consistency */
+  background: linear-gradient(145deg, #0f1a33, #0a1124);
+  border: 1px solid #1b3f83;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
   padding: var(--spacing-lg) !important;
   max-width: none !important;
   text-align: left !important;
@@ -68,15 +84,15 @@
 }
 
 .query-results-title {
-  font-size: var(--font-size-base);
+  font-size: 1.4rem; /* Adjusted for better visibility */
   font-weight: var(--font-weight-semibold);
-  color: var(--color-neutral-900);
+  color: #cdd8ff; /* Light color for contrast */
   margin: 0;
 }
 
 .query-results-info {
   font-size: var(--font-size-sm);
-  color: var(--color-neutral-500);
+  color: #dbe4ff; /* Light color for contrast */
   margin: 0;
 }
 
@@ -88,33 +104,34 @@
   width: 100%;
   font-size: var(--font-size-sm);
   border-collapse: collapse;
+  margin-top: 15px; /* Space from title */
 }
 
 .query-results-table thead tr {
-  border-bottom: 2px solid var(--color-neutral-200);
-  background-color: var(--color-neutral-50);
+  border-bottom: 2px solid rgba(255,255,255,0.1); /* Light border */
+  background-color: rgba(255,255,255,0.08); /* Darker background for header */
 }
 
 .query-results-table th {
   text-align: left;
   padding: var(--spacing-md);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-neutral-900);
+  color: white; /* Light color for contrast */
 }
 
 .query-results-table tbody tr {
-  border-bottom: 1px solid var(--color-neutral-200);
+  border-bottom: 1px solid rgba(255,255,255,0.05); /* Lighter border */
   transition: background-color var(--transition-duration-fast) var(--transition-timing-function);
 }
 
 .query-results-table tbody tr:hover {
-  background-color: var(--color-neutral-50);
+  background-color: rgba(255,255,255,0.04); /* Slightly lighter dark background on hover */
 }
 
 .query-results-table td {
   padding: var(--spacing-md);
   font-family: 'Consolas', 'Monaco', monospace;
-  color: var(--color-neutral-700);
+  color: #dbe4ff; /* Light color for contrast */
 }
 
 @media (max-width: 768px) {

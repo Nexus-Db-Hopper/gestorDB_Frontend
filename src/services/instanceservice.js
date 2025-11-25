@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5138/api/instances";
+const API_URL = "https://nexusbd-backend.onrender.com/api/instances";
 
 const axiosInstance = axios.create({
   baseURL: API_URL,

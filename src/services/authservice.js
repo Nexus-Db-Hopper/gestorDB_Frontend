@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5138/api/Auth";
+const API_URL = "https://nexusbd-backend.onrender.com/api/Auth";
 
 // Función auxiliar para manejar las respuestas de la API
 const handleResponse = async (res) => {

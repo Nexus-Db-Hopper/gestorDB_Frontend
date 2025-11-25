@@ -1,4 +1,4 @@
-@import '../../styles/variables.css';
+@import '../../styles/variables.css'; /* Keep if other variables are used, but override colors */
 
 .database-info {
   width: 100%;
@@ -14,12 +14,12 @@
 .database-title {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
-  color: var(--color-neutral-900);
+  color: white; /* Changed for contrast */
   margin: 0 0 var(--spacing-xs) 0;
 }
 
 .database-type {
-  color: var(--color-neutral-500);
+  color: #cdd8ff; /* Changed for contrast, similar to admin subtitle */
   font-size: var(--font-size-base);
   margin: 0;
 }
@@ -31,6 +31,13 @@
 }
 
 .stat-card {
+  /* Inherits background from UserDashboard.css .query-results-section or similar */
+  /* Ensure Card component itself has a dark background if not already */
+  background: rgba(255, 255, 255, 0.04); /* Explicitly set for consistency */
+  border-radius: 14px; /* Consistent border-radius */
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: var(--spacing-md) !important;
   max-width: none !important;
   text-align: left !important;
@@ -51,72 +58,43 @@
   flex-shrink: 0;
 }
 
-.stat-icon.host {
-  background-color: rgba(0, 123, 255, 0.1);
-  color: var(--color-primary-500);
+/* Ensure icons are visible on dark background */
+.stat-icon.database i,
+.stat-icon.user i,
+.stat-icon.status i {
+  color: #3d7bff; /* Primary blue for icons */
+  font-size: 1.5rem; /* Adjust icon size */
 }
 
-.stat-icon.database {
-  background-color: rgba(0, 123, 255, 0.1);
-  color: var(--color-primary-500);
+.stat-icon.status i.active {
+  color: #55ff86; /* Green for active */
 }
 
-.stat-icon.size {
-  background-color: rgba(40, 167, 69, 0.1);
-  color: var(--color-success);
+.stat-icon.status i.inactive {
+  color: #ff6969; /* Red for inactive */
 }
 
-.stat-icon.uptime {
-  background-color: rgba(255, 193, 7, 0.1);
-  color: var(--color-warning);
-}
 
 .stat-label {
   font-size: var(--font-size-sm);
-  color: var(--color-neutral-500);
+  color: #dbe4ff; /* Changed for contrast */
   margin: 0 0 var(--spacing-xs) 0;
 }
 
 .stat-value {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-neutral-900);
+  color: white; /* Changed for contrast */
   margin: 0;
 }
 
-.database-details {
-  padding: var(--spacing-xl) !important;
-  max-width: none !important;
-  text-align: left !important;
+/* Status card specific styles */
+.status-card .stat-content {
+  margin-bottom: 0; /* No margin if no buttons below */
 }
 
-.details-title {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-neutral-900);
-  margin: 0 0 var(--spacing-md) 0;
-}
+/* Removed styles for instance-actions and buttons as they are no longer in DatabaseInfo */
 
-.details-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-md);
-}
-
-.detail-item {
-  font-size: var(--font-size-sm);
-}
-
-.detail-label {
-  color: var(--color-neutral-500);
-  margin-right: var(--spacing-sm);
-}
-
-.detail-value {
-  font-family: 'Consolas', 'Monaco', monospace;
-  color: var(--color-neutral-900);
-  font-weight: var(--font-weight-medium);
-}
 
 @media (max-width: 768px) {
   .database-stats-grid {

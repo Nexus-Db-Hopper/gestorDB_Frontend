@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createInstance } from "../../../services/instanceservice";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode"; // Reverted to named import
 import "./AdminDashboard.css";
 
 export default function AssignInstances() {
@@ -20,6 +20,32 @@ export default function AssignInstances() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Función de validación de contraseña fuerte
+  const validatePassword = (password) => {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSpecialChar = /[!@#$%^&*]/.test(password);
+
+    if (password.length < minLength) {
+      return `Password must be at least ${minLength} characters long.`;
+    }
+    if (!hasUpperCase) {
+      return "Password must contain at least one uppercase letter.";
+    }
+    if (!hasLowerCase) {
+      return "Password must contain at least one lowercase letter.";
+    }
+    if (!hasNumber) {
+      return "Password must contain at least one number.";
+    }
+    if (!hasSpecialChar) {
+      return "Password must contain at least one special character (!@#$%^&*).";
+    }
+    return null; // La contraseña es válida
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -30,6 +56,14 @@ export default function AssignInstances() {
       // Validaciones básicas
       if (!formData.engine || !formData.name || !formData.username || !formData.userPassword || !formData.ownerUserId) {
         setError("Please fill in all required fields.");
+        setLoading(false);
+        return;
+      }
+
+      // Validar contraseña fuerte
+      const passwordError = validatePassword(formData.userPassword);
+      if (passwordError) {
+        setError(passwordError);
         setLoading(false);
         return;
       }
@@ -95,7 +129,7 @@ export default function AssignInstances() {
           </div>
           <div className="form-group">
             <label className="log-label">Database Password</label>
-            <input className="log-input" type="password" name="userPassword" value={formData.userPassword} onChange={handleChange} required placeholder="e.g., StrongP@ssw0rd!" />
+            <input className="log-input" type="password" name="userPassword" value={formData.userPassword} onChange={handleChange} required placeholder="e.g., StrongP@ssw0rd! (Min 8 chars, 1 Upper, 1 Lower, 1 Num, 1 Special)" />
           </div>
           <div className="form-group">
             <label className="log-label">Student ID (Owner)</label>
